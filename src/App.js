@@ -15,7 +15,7 @@ function App() {
       <RouteChangeTracker/>
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <h1>Hello from Tejas !</h1>
+        <h1>Hello from Tejaskumar !</h1>
       </header>
     </div>
   );

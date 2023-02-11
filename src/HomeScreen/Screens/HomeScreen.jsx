@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Button } from 'antd';
-import { withRouter } from "react-router";
+import { withRouter } from '../../Commons/WithRouterWrapper';
+
+
 class HomeScreen extends React.Component{
     constructor(props){
         super(props);
@@ -10,10 +12,7 @@ class HomeScreen extends React.Component{
     }
     routeChange = () => {
         console.log("button clicked")
-        this.props.history.push({
-            pathname: '/Dashboard',
-            state: {}
-        });
+        this.props.navigate('/Dashboard')
     }
     render() {
         return (

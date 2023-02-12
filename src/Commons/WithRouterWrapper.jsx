@@ -9,6 +9,8 @@ export const withRouter = (Component) => {
     return (
       <Component
         navigate={navigate}
+        location={location}
+        params={params}
         {...props}
         />
     );

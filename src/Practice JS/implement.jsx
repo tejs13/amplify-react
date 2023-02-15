@@ -29,3 +29,11 @@ class model extends car {
 myCar = new model("Maruti Suzuki", 'Ritz')
 myCar.printCarDetails()
 console.log(this)
+
+
+function printDate() {
+  console.log(new Date().toLocaleDateString())
+}
+
+setInterval(printDate, 1000);
+

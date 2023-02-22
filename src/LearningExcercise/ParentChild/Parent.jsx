@@ -14,7 +14,7 @@ class Parent extends React.Component{
 
     hanldeClick = (e) => {
         console.log(e);
-        this.setState({clickCount : this.state.clickCount + 1}, ()=>{console.log(this.state.clickCount)})
+        this.setState((prevState, props) => ({clickCount : prevState.clickCount + 1}), ()=>{console.log(this.state.clickCount)})
     }
 
     getClickFromChild = (cnt) => {

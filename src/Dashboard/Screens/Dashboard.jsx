@@ -30,7 +30,7 @@ class Dashboard extends React.Component{
     }
 
     handleNavClick = (item) => {
-        console.log(item.key)
+        console.log(item.key, this)
         let menuItem = menuItems.find(x => x.key === item.key)
         this.setState({currentBreadcrumb: menuItem.text,
                     currentActiveMenuKey: menuItem.key}, console.log(this.state))

@@ -1,27 +1,68 @@
-import React, {Component} from 'react';
-import { Button } from 'antd';
+import React, { Component } from 'react';
+import { Button, Modal } from 'antd';
 import { withRouter } from '../../Commons/WithRouterWrapper';
+import LoginPage from '../../LoginSignup/Screens/LoginPage';
 
-
-class HomeScreen extends React.Component{
-    constructor(props){
+class HomeScreen extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
-            
+
+            displayLogin: false
+
         }
     }
     routeChange = () => {
         console.log("button clicked")
-        this.props.navigate('/Dashboard')
+        // this.props.navigate('/LoginPage')
     }
+
+    handleStartClick = () => {
+        console.log("botton lcikes start here")
+        this.setState((prevState) => ({ displayLogin: !prevState.displayLogin }))
+    }
+
+    handleCancel = () => {
+        this.setState({ displayLogin: false })
+    }
+
+    handleLoginClick = (e) => {
+
+        console.log("Login button clicked", e)
+        this.props.navigate('/selection-panel')
+
+    }
+
+    handleLoginFailed = (e) => {
+        console.log("LOGIN FAILED", e)
+    }
+
+
+
+
     render() {
+
+
         return (
             <>
-            <header className="App-header">
-                {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                <h1>Hello from Tejaskumar !!!</h1>
-                <Button onClick={this.routeChange} type="primary">Start Here</Button>
-            </header>
+
+                {<Modal title="" open={this.state.displayLogin} onCancel={this.handleCancel} footer={[]}
+                >
+                    <LoginPage
+                    handleLoginClick={this.handleLoginClick}
+                    handleLoginFailed={this.handleLoginFailed}
+
+
+                    />
+                </Modal>}
+
+
+
+                <header className="App-header">
+                    {/* <img src={logo} className="App-logo" alt="logo" /> */}
+                    <h1>Hello from Tejaskumar !!!</h1>
+                    <Button onClick={this.handleStartClick} type="primary" size='large'>Start Here</Button>
+                </header>
             </>
         )
     }

@@ -8,7 +8,7 @@ import Clock from '../../LearningExcercise/ClockAndLifecycle/clock';
 import DefaultScreen from '../DefaultScreen';
 import BTCChart from '../../BigData/Screens/BTCLive';
 import { Data } from '../../BigData/DataSource/sample';
-
+import BTCBarChart from '../../BigData/Screens/BTCBarChart';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -86,7 +86,8 @@ class Dashboard extends React.Component{
                             '0' : <DefaultScreen/>,
                             '1': <Parent/>,
                             '2': <Clock/>,
-                            '3' : <BTCChart data={Data}/>
+                            // '3' : <BTCChart data={Data}/>
+                            '3' : <BTCBarChart/>
                             }[this.state.currentActiveMenuKey]
                      }
                         

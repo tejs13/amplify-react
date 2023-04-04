@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { Button, Col, Row, Statistic } from 'antd';
+import Password from 'antd/es/input/Password';
 
 ChartJS.register(
     CategoryScale,
@@ -40,9 +41,20 @@ export const options = {
             text: 'BTC Transaction Volume LIVE',
         },
     },
+    scales: {
+        yAxes: [{
+            display: true,
+            ticks: {
+                suggestedMin: 0.0,
+                suggestedMax: 250.0,    // minimum will be 0, unless there is a lower value.
+                // OR //
+                beginAtZero: true   // minimum value will be 0.
+            }
+        }]
+    }
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['March', 'April', 'May'];
 
 
 
@@ -58,7 +70,7 @@ class BTCBarChart extends React.Component {
             datasets: [
                 {
                     label: 'BTC Volume',
-                    data: labels.map((i) => (i.length * 100)),
+                    data: labels.map((i) => (0)),
                     borderColor: 'rgb(240, 245, 245)',
                     backgroundColor: 'rgb(71, 107, 107)',
                 },
@@ -81,22 +93,9 @@ class BTCBarChart extends React.Component {
 
 
     componentDidMount() {
-        //  Socket Code 
-        // console.log("IN MOUNT BTC BAR CHART")
-        // console.log("SOCKET RECEIVIBNG")
 
-        // this.socket.on('connect', function () {
-        //     this.socket.on('message',(data) =>{
-        //         console.log(JSON.stringify(data));
-        //     });
-        // });
-        // this.socket.on("connect_error", (err) => {
-        //     console.log(`connect_error due to ${err.message}`);
-        //   });
-        // Socket Code Ends 
-
-        this.dataRefresh()
-        // this.timerID = setInterval(() => this.dataRefresh(), 3000)
+        // this.dataRefresh()
+        this.timerID = setInterval(() => this.dataRefresh(), 3000)
 
     }
 
@@ -117,6 +116,8 @@ class BTCBarChart extends React.Component {
                 //   })
             })
             .then(response => response.json())
+            
+
             .then(data => this.setState({ BTCData: data.data }, () => { console.log(this.state.BTCData) }))
             .catch((error) => { console.log(error) })
 
@@ -125,7 +126,22 @@ class BTCBarChart extends React.Component {
             datasets: [
                 {
                     label: 'BTC Volume',
-                    data: labels.map((i) => (i.length + this.state.variableCnt)),
+                    data: labels.map((i) => { 
+                        switch(i) {
+                            case 'March':
+                                return 0
+                                break;
+ 
+                            case 'April':
+                                return this.state.BTCData.trans_fees
+                                break;
+
+                            case 'May':
+                                return 35.56
+                                break;
+
+                        }
+                    }),
                     borderColor: 'rgb(240, 245, 245)',
                     backgroundColor: 'rgb(71, 107, 107)',
                 },
@@ -146,6 +162,9 @@ class BTCBarChart extends React.Component {
                 <Row gutter={16}>
                     <Col span={12}>
                         <Statistic title="BTC Volume, So Far!" value={this.state.BTCData.vol} />
+                    </Col>
+                    <Col span={12}>
+                        <Statistic title="Total Transactions, So Far!" value={this.state.BTCData.total_hash} />
                     </Col>
                 </Row>
 

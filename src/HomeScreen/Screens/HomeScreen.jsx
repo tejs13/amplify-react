@@ -60,7 +60,7 @@ class HomeScreen extends React.Component {
 
                 <header className="App-header">
                     {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                    <h1>Hello from Tejaskumar !!!</h1>
+                    <h1>Welcome To Avenue Platform</h1>
                     <Button onClick={this.handleStartClick} type="primary" size='large'>Start Here</Button>
                 </header>
             </>

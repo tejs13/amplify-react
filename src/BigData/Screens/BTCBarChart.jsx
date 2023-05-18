@@ -38,7 +38,7 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'BTC Transaction Volume LIVE',
+            text: 'BTC Transaction Fees LIVE',
         },
     },
     scales: {
@@ -54,7 +54,7 @@ export const options = {
     }
 };
 
-const labels = ['March', 'April', 'May'];
+const labels = ['April', 'May', 'June'];
 
 
 
@@ -69,7 +69,7 @@ class BTCBarChart extends React.Component {
             labels,
             datasets: [
                 {
-                    label: 'BTC Volume',
+                    label: 'BTC Transaction Fees',
                     data: labels.map((i) => (0)),
                     borderColor: 'rgb(240, 245, 245)',
                     backgroundColor: 'rgb(71, 107, 107)',
@@ -125,19 +125,19 @@ class BTCBarChart extends React.Component {
             labels,
             datasets: [
                 {
-                    label: 'BTC Volume',
+                    label: 'BTC Transaction Fees',
                     data: labels.map((i) => { 
                         switch(i) {
-                            case 'March':
-                                return 0
+                            case 'April':
+                                return 60
                                 break;
  
-                            case 'April':
+                            case 'May':
                                 return this.state.BTCData.trans_fees
                                 break;
 
-                            case 'May':
-                                return 35.56
+                            case 'June':
+                                return 50.56
                                 break;
 
                         }
